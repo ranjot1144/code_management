@@ -17,3 +17,4 @@ use App\Http\Controllers\CodeController;
 
 Route::post('/generate-code', [CodeController::class, 'generateUniqueCode'])->name('generate-code');
 Route::post('/allocate-code', [CodeController::class, 'allocateCode']);
+Route::post('/reset-allocated-code', [CodeController::class, 'resetAllocatedCode'])->name('reset-allocated-code');

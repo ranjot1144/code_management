@@ -31,4 +31,18 @@ class CodeController extends Controller
 
       return response()->json(['message' => 'Code allocated successfully', 'code' => $randomCode->code]);
   }
+  public function resetAllocatedCode(Request $request)
+  {
+    $allocatedCode = Code::where('code', $request->input('code'))->where('allocated', true)->first();
+
+    if (!$allocatedCode) {
+        return response()->json(['message' => 'Allocated code not found'], 404);
+    }
+
+    $allocatedCode->allocated = false;
+    $allocatedCode->save();
+
+    return response()->json(['message' => 'Code reset successfully']);
+  }
+
 }
